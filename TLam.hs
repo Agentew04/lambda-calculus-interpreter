@@ -73,7 +73,8 @@ restoreNames gamma (AppNL t1 t2) = App (restoreNames gamma t1) (restoreNames gam
 
 runEvalAndRestore :: Term -> Term
 runEvalAndRestore term = 
-  let gamma = zip (freeVars term) [0..]       -- Cria o contexto
+  let freeVarsList = freeVars term
+      gamma = if null freeVarsList then [('y', 0)] else zip freeVarsList [0..]  -- Cria o contexto com entrada coringa se necessário
       termNL = removeNames gamma term        -- Remove nomes
       termNLEval = evalNL gamma termNL       -- Avalia sem nomes
   in restoreNames gamma termNLEval           -- Restaura os nomes
