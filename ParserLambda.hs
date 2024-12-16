@@ -201,7 +201,6 @@ lexer s@(c:cs)
 
 
 
-main = getContents >>= print . parserlamb .lexer
 -- $Id: GenericTemplate.hs,v 1.26 2005/01/14 14:47:22 simonmar Exp $
 
 #if !defined(__GLASGOW_HASKELL__)
